@@ -58,13 +58,22 @@
 			var resType = document.getElementById('resType').value;
 			var engine = document.getElementById('engine').value;
 			
-			if(fileType==""){
-				if(engine=="filepursuit") {
-					fileType = "all";
+			if(engine=="google" || engine=='') {
+				var modifiedQuery = "intext:\""+query.split(/\s+/).join("\" intext:\"")+"\"";
+				if(fileType==""){
+					var finalQuery = modifiedQuery+" -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) intitle:\"index.of\" -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|index-of|wallywashis|downloadmana)";
+				}else{
+					var finalQuery = modifiedQuery+" +("+fileType+") -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) intitle:\"index.of\" -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|index-of|wallywashis|downloadmana)";	
 				}
-				var finalQuery = query+" -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) intitle:\"index.of\" -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|index-of|wallywashis|downloadmana)";
-			}else{
-				var finalQuery = query+" +("+fileType+") -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) intitle:\"index.of\" -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|index-of|wallywashis|downloadmana)";
+			} else {
+				if(fileType==""){
+					if(engine=="filepursuit") {
+						fileType = "all";
+					}
+					var finalQuery = query+" -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) intitle:\"index.of\" -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|index-of|wallywashis|downloadmana)";
+				}else{
+					var finalQuery = query+" +("+fileType+") -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) intitle:\"index.of\" -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|index-of|wallywashis|downloadmana)";
+				}
 			}
 			
 			switch(engine) {

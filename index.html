@@ -58,21 +58,13 @@
 			var resType = document.getElementById('resType').value;
 			var engine = document.getElementById('engine').value;
 			
-			if(engine=="google" || engine=='') {
-				if(fileType==""){
-					var finalQuery = "intext:\""+query+"\" -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) intitle:\"index.of\" -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|index-of|wallywashis|downloadmana)";
-				}else{
-					var finalQuery = "intext:\""+query+"\" +("+fileType+") -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) intitle:\"index.of\" -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|index-of|wallywashis|downloadmana)";	
+			if(fileType==""){
+				if(engine=="filepursuit") {
+					fileType = "all";
 				}
-			} else {
-				if(fileType==""){
-					if(engine=="filepursuit") {
-						fileType = "all";
-					}
-					var finalQuery = query+" -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) intitle:\"index.of\" -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|index-of|wallywashis|downloadmana)";
-				}else{
-					var finalQuery = query+" +("+fileType+") -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) intitle:\"index.of\" -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|index-of|wallywashis|downloadmana)";
-				}
+				var finalQuery = query+" -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) intitle:\"index.of\" -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|index-of|wallywashis|downloadmana)";
+			}else{
+				var finalQuery = query+" +("+fileType+") -inurl:(jsp|pl|php|html|aspx|htm|cf|shtml) intitle:\"index.of\" -inurl:(listen77|mp3raid|mp3toss|mp3drug|index_of|index-of|wallywashis|downloadmana)";
 			}
 			
 			switch(engine) {
@@ -81,9 +73,6 @@
 					break;
 				case 'startpage':
 					var url = "https://www.startpage.com/do/dsearch?query="+encodeURIComponent(finalQuery);
-					break;
-				case 'searx':
-					var url = "https://searx.me/?q="+encodeURIComponent(finalQuery);
 					break;
 				case 'filepursuit':
 					var url = "https://filepursuit.com/pursuit?q="+query+"&type="+resType;

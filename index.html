@@ -88,6 +88,9 @@
 				case 'filepursuit':
 					var url = "https://filepursuit.com/pursuit?q="+query+"&type="+resType;
 					break;
+				default:
+					var url = "https://www.google.com/search?q="+encodeURIComponent(finalQuery);
+					break;
 			}
 			window.open(url, '_blank');
 		}
